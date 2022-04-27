@@ -36,11 +36,11 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void showProgress(){
-        progressBar.show();
+     //  progressBar.show();
     }
 
     public void hideProgress(){
-        progressBar.hide();
+     //   progressBar.hide();
     }
 
     protected void setLayout(int layout){
