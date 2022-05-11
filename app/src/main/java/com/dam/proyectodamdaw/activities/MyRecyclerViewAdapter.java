@@ -1,4 +1,4 @@
-package com.dam.proyectodamdaw.model;
+package com.dam.proyectodamdaw.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dam.proyectodamdaw.Parameters;
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.base.ImageDownloader;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
@@ -39,13 +40,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Date date = new Date((long) root.list.get(position).dt*1000);
+        List l = root.list.get(position);
+        Date date = new Date((long) l.dt*1000);
+        String url = Parameters.URL_ICON_PRE+l.weather.get(0).icon+Parameters.URL_ICON_POST;
+
+        ImageDownloader.DownloadImage(url,holder.image);
 
         holder.Texthora.setText(""+ new SimpleDateFormat("HH:mm").format(date));
         holder.Textdia.setText(""+ new SimpleDateFormat("EEEE",new Locale("es","ES")).format(date));
         holder.Textfecha.setText(""+ new SimpleDateFormat("dd/MM/YYYY").format(date));
-        holder.TexttipoLluvia.setText(""+ new SimpleDateFormat("EEEE").format(date));
-        holder.Textmax.setText("" );
+        holder.TexttipoLluvia.setText(""+ l.weather.get(0).description);
+        holder.Texttemp.setText(""+String.format("%.2f", (l.main.temp)/10)+"°C");
+        holder.Textmax.setText(""+String.format("%.2f", (l.main.temp_max)/10)+"°C");
+        holder.Textmin.setText(""+String.format("%.2f", (l.main.temp_min)/10)+"°C");
+
     }
 
     @Override

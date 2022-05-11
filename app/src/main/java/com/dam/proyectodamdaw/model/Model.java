@@ -1,5 +1,7 @@
 package com.dam.proyectodamdaw.model;
 
+import com.dam.proyectodamdaw.activities.Root;
+
 import java.util.ArrayList;
 import java.util.List;
 
