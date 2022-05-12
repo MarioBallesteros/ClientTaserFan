@@ -30,7 +30,6 @@ public class SelectCity extends BaseActivity implements CallInterface {
 
     private Button button;
     private ImageView imgCity;
-    private ArrayList citiesList;
     private static List<Ciudad> ciudades;
     private Button Addcity;
 
@@ -45,10 +44,8 @@ public class SelectCity extends BaseActivity implements CallInterface {
         button=findViewById(R.id.buttonCity);
         Addcity = findViewById(R.id.buttonAdd);
 
-
-
-
-
+        executeCall(SelectCity.this);
+       //ciudades.add(new Ciudad("Roma",41.902782,12.496366,"https://historia.nationalgeographic.com.es/medio/2019/12/11/coliseo-roma_2924b6ae_1280x720.jpg"));
 
         Addcity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +63,8 @@ public class SelectCity extends BaseActivity implements CallInterface {
                 startActivity(intent);
             }
         });
-            executeCall(this);
-
 
     }
-
-
     @Override
     public void doInBackground() {
         ciudades = Connector.getConector().getAsListWithAllPath(Ciudad.class,"http://10.11.19.6:4567/cities");
@@ -92,7 +85,7 @@ public class SelectCity extends BaseActivity implements CallInterface {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
 
+        });
     }
 }

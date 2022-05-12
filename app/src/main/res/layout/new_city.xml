@@ -10,12 +10,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre:"
-        app:layout_constraintBottom_toTopOf="@+id/cityName"
+        app:layout_constraintBottom_toTopOf="@+id/cityNametxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/cityName"
+        android:id="@+id/cityNametxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/cityLat"
+        android:id="@+id/cityLattxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Latitud"
-        app:layout_constraintBottom_toTopOf="@+id/cityLat"
+        app:layout_constraintBottom_toTopOf="@+id/cityLattxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,16 +50,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Longitud"
-        app:layout_constraintBottom_toTopOf="@+id/cityLon"
+        app:layout_constraintBottom_toTopOf="@+id/cityLontxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/cityLon"
+        android:id="@+id/cityLontxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="textPersonName|text"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -69,12 +69,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Image URL"
-        app:layout_constraintBottom_toTopOf="@+id/cityImage"
+        app:layout_constraintBottom_toTopOf="@+id/cityImagetxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/cityImage"
+        android:id="@+id/cityImagetxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="236dp"
@@ -93,5 +93,5 @@
         android:text="Create City"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cityImage" />
+        app:layout_constraintTop_toBottomOf="@+id/cityImagetxt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
