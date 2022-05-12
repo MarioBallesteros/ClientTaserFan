@@ -3,7 +3,6 @@ package com.dam.proyectodamdaw.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,14 +11,18 @@ import android.widget.Spinner;
 
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.Ciudad;
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.api.Connector;
+import com.dam.proyectodamdaw.base.BaseActivity;
+import com.dam.proyectodamdaw.base.CallInterface;
 import com.dam.proyectodamdaw.base.ImageDownloader;
 
 import java.util.ArrayList;
-public class SelectCity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import java.util.List;
+
+public class SelectCity extends BaseActivity implements CallInterface {
 
     private Ciudad ciudad;
     private Spinner spinner;
@@ -28,6 +31,8 @@ public class SelectCity extends AppCompatActivity implements AdapterView.OnItemS
     private Button button;
     private ImageView imgCity;
     private ArrayList citiesList;
+    private static List<Ciudad> ciudades;
+    private Button Addcity;
 
 
     @Override
@@ -38,12 +43,20 @@ public class SelectCity extends AppCompatActivity implements AdapterView.OnItemS
         imgCity=findViewById(R.id.imgCity);
         spinner=findViewById(R.id.spinner);
         button=findViewById(R.id.buttonCity);
+        Addcity = findViewById(R.id.buttonAdd);
 
-        citiesList= new ArrayList<City>();
 
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,citiesList);
-        spinner.setAdapter(arrayAdapter);
 
+
+
+
+        Addcity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),AddCity.class);
+                startActivity(intent);
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,24 +66,33 @@ public class SelectCity extends AppCompatActivity implements AdapterView.OnItemS
                 startActivity(intent);
             }
         });
+            executeCall(this);
 
-        citiesList.add(new Ciudad("Valencia",39.46975f,-0.37739f,"https://cd1.taquilla.com/data/images/t/83/ciudad-de-las-artes-y-las-ciencias__330x275.jpg"));
-        citiesList.add(new Ciudad("Roma",45.5838300f,45.5838300f,"https://www.lavanguardia.com/files/image_948_465/uploads/2017/05/15/5fa3c5d7ef234.jpeg"));
-        citiesList.add(new Ciudad("Paris",48.85341f,2.3488f,"https://www.eliberico.com/wp-content/uploads/2021/09/torre-eiffel-francia.jpg"));
+
+    }
+
+
+    @Override
+    public void doInBackground() {
+        ciudades = Connector.getConector().getAsListWithAllPath(Ciudad.class,"http://10.11.19.6:4567/cities");
+    }
+
+    @Override
+    public void doInUI() {
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item,ciudades);
         spinner.setAdapter(arrayAdapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                ImageDownloader.downloadImage(getApplicationContext(),ciudades.get(i).getImg(),imgCity, ImageView.ScaleType.CENTER_CROP,R.mipmap.ic_launcher);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        ciudad=(Ciudad)adapterView.getSelectedItem();
-        ImageDownloader.DownloadImage(ciudad.getImg(),imgCity);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-
 }

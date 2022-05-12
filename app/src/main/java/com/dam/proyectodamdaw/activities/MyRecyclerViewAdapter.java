@@ -44,7 +44,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         Date date = new Date((long) l.dt*1000);
         String url = Parameters.URL_ICON_PRE+l.weather.get(0).icon+Parameters.URL_ICON_POST;
 
-        ImageDownloader.DownloadImage(url,holder.image);
+        ImageDownloader.downloadImage(url,holder.image);
 
         holder.Texthora.setText(""+ new SimpleDateFormat("HH:mm").format(date));
         holder.Textdia.setText(""+ new SimpleDateFormat("EEEE",new Locale("es","ES")).format(date));

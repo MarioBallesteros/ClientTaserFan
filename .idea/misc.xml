@@ -11,7 +11,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/activity_select.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/activity_spinner.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/new_city.xml" value="0.25" />
         <entry key="app/src/main/res/layout/progress_bar.xml" value="0.2703125" />
+        <entry key="app/src/main/res/layout/select_city.xml" value="0.25" />
         <entry key="app/src/main/res/layout/simple_element.xml" value="0.5" />
       </map>
     </option>
