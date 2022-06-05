@@ -23,10 +23,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private LayoutInflater inflater;
     private View.OnClickListener onClickListener;
     private List<Vehiculo> vehiculosList;
-    private Context context;
+    private Context paramcontext;
 
     public MyRecyclerViewAdapter(Context context, List<Vehiculo> vehiculosList){
         this.vehiculosList = vehiculosList;
+        paramcontext = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -41,29 +42,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        List l = vehiculosList.list.get(position);
-        Date date = new Date((long) l.dt*1000);
-        String url = Parameters.URL_ICON_PRE+l.weather.get(0).icon+Parameters.URL_ICON_POST;
-
-        ImageDownloader.downloadImage(url,holder.image);
-
-        holder.Texthora.setText(""+ new SimpleDateFormat("HH:mm").format(date));
-        holder.Textdia.setText(""+ new SimpleDateFormat("EEEE",new Locale("es","ES")).format(date));
-        holder.Textfecha.setText(""+ new SimpleDateFormat("dd/MM/YYYY").format(date));
-        holder.TexttipoLluvia.setText(""+ l.weather.get(0).description);
-        holder.Texttemp.setText(""+String.format("%.2f", (l.main.temp)/10)+"°C");
-        holder.Textmax.setText(""+String.format("%.2f", (l.main.temp_max)/10)+"°C");
-        holder.Textmin.setText(""+String.format("%.2f", (l.main.temp_min)/10)+"°C");
-
+       Vehiculo vehiculo = vehiculosList.get(position);
+        switch (vehiculo.get)
     }
 
     @Override
     public int getItemCount() {
-        return vehiculosList.list.size();
+        return vehiculosList.size();
     }
-
-
-
+    
     public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         TextView TexttipoLluvia;
@@ -87,7 +74,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
+    public void setOnClickListener(View.OnClickListener clickListener) {
+        onClickListener = clickListener;
     }
 }

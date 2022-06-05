@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.ClientTaserFan.Ciudad;
 import com.dam.ClientTaserFan.activities.preferences.GestionPreferencias;
-import com.dam.ClientTaserFan.model.Model;
 import com.dam.ClientTaserFan.api.Connector;
 import com.dam.ClientTaserFan.base.BaseActivity;
 import com.dam.ClientTaserFan.base.CallInterface;
